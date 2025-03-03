@@ -18,4 +18,8 @@ output "subnet_vpc_id" {
   value       = aws_subnet.subnet1.vpc_id
 }
 
+output  "aws_internet_gateway" {
+description = "internet gateway id"
+value = aws_internet_gateway.igw.id
+}
 

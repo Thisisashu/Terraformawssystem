@@ -16,4 +16,25 @@ resource "aws_subnet" "subnet1" {
     Name = "MySubnet"
   }
 }
+resource "aws_internet_gateway" "igw" {
+vpc_id = aws_vpc.main.id
+tags = {
+Name = "ashu-igw"
+}
+} 
+resource "aws_route_table" "my-route-table" {
+vpc_id = aws_vpc.main.id
+#Route anything with a CIDR of 0.0.0.0/0 to the IGW
+route {
+cidr_block = "0.0.0.0/0"
+gateway_id = aws_internet_gateway.igw.id
+}
+}
+resource "aws_route_table_association" "my-route-association" { 
+subnet_id = aws_subnet.subnet1.id 
+route_table_id = aws_route_table.my-route-table.id 
+} 
+
+
+
 
