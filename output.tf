@@ -25,4 +25,18 @@ value = aws_internet_gateway.igw.id
 output "aws_key_pair" {
   value = aws_key_pair.vm_ssh_key.key_name
 }
+output "security_group_id" {
+  description = "The ID of the security group"
+  value       = aws_security_group.allow_tls_and_ssh.id
+}
 
+# Optional: You can also output the security group name, CIDR block, and other attributes
+output "security_group_name" {
+  description = "The name of the security group"
+  value       = aws_security_group.allow_tls_and_ssh.name
+}
+
+output "security_group_cidr_blocks" {
+  description = "The CIDR blocks allowed for ingress"
+  value       = aws_security_group.allow_tls_and_ssh.ingress
+}
