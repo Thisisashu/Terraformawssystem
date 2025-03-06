@@ -3,6 +3,7 @@ ami = data.aws_ami.latest_amazon_linux.id
 instance_type = var.instance_type 
 subnet_id = data.terraform_remote_state.network_details.outputs.subnet_id 
 key_name = data.terraform_remote_state.network_details.outputs.aws_key_pair
+depends_on = [data.terraform_remote_state.network_details]
 security_groups = [
     data.terraform_remote_state.network_details.outputs.security_group_id  # Security Group ID from remote state
   ] 
