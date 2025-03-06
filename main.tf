@@ -1,5 +1,5 @@
 resource "aws_instance" "my_vm"  { 
-ami = "ami-05b10e08d247fb927" 
+ami = data.aws_ami.latest_amazon_linux.id
 instance_type = var.instance_type 
 subnet_id = data.terraform_remote_state.network_details.outputs.subnet_id 
 key_name = data.terraform_remote_state.network_details.outputs.aws_key_pair
